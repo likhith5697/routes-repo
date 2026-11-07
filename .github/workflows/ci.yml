@@ -1,0 +1,24 @@
+# All logic lives in likhith5697/platform-templates. This repo only calls its reusable workflows.
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# Least privilege for the called workflows: read-only access to this repo's code.
+permissions:
+  contents: read
+
+jobs:
+  # 1. Pull requests: validate routes.yaml.
+  validate:
+    if: github.event_name == 'pull_request'
+    uses: likhith5697/platform-templates/.github/workflows/validate.yml@v0.1.0
+
+  # 2. Merged to main: ask gateway-infra to apply.
+  trigger-apply:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    uses: likhith5697/platform-templates/.github/workflows/trigger-apply.yml@v0.1.0
+    secrets:
+      dispatch_token: ${{ secrets.GATEWAY_INFRA_DISPATCH_TOKEN }}
