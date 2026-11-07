@@ -33,7 +33,7 @@ git checkout -b add-payments-route
 **3. (Optional) Check locally before pushing**
 
 ```bash
-git clone --branch v0.1.0 https://github.com/likhith5697/platform-templates.git ../platform-templates
+git clone --branch v0.1.1 https://github.com/likhith5697/platform-templates.git ../platform-templates
 pip install -r ../platform-templates/requirements.txt
 python ../platform-templates/validate_routes.py routes.yaml
 python ../platform-templates/render_httproutes.py routes.yaml   # preview the generated HTTPRoutes
@@ -50,8 +50,8 @@ On merge to `main`, the `trigger-apply` job sends a `trigger-apply` event to gat
 ## What happens where
 
 ```
-PR opened  → ci.yml: validate       → platform-templates/validate.yml@v0.1.0
-merge main → ci.yml: trigger-apply  → platform-templates/trigger-apply.yml@v0.1.0 → repository_dispatch → gateway-infra
+PR opened  → ci.yml: validate       → platform-templates/validate.yml@v0.1.1
+merge main → ci.yml: trigger-apply  → platform-templates/trigger-apply.yml@v0.1.1 → repository_dispatch → gateway-infra
 ```
 
 ## One-time repo setup (admins)
