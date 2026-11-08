@@ -24,3 +24,11 @@ routes:
     service: orders
     port: 8080
     auth: custom
+
+  - name: orders-delete
+    path: /orders/{id}
+    method: DELETE
+    namespace: orders
+    service: orders
+    port: 8080
+    auth: custom
